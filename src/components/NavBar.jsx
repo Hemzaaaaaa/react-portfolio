@@ -44,9 +44,9 @@ const NavBar = () => {
                     </Nav>
                     <span className='navbar-text'>
                         <div className='social-icon'>
-                            <a to="#"><img src={navIcon1} alt="" /></a>
-                            <a to="https://github.com/Hemzaaaaaa"><img src={navIcon2} alt="" /></a>
-                            <a to="https://www.instagram.com/hemzaaaaaa_/"><img src={navIcon3} alt="https://www.instagram.com/hemzaaaaaa_/" /></a>
+                            <a href="https://www.linkedin.com/in/hamza-lamkhailif-908333229/"><img src={navIcon1} alt="" /></a>
+                            <a href="https://github.com/Hemzaaaaaa"><img src={navIcon2} alt="" /></a>
+                            <a href="https://www.instagram.com/hemzaaaaaa_/"><img src={navIcon3} alt="https://www.instagram.com/hemzaaaaaa_/" /></a>
                         </div>
                         <button className='vvd' onClick={() => console.log('connect')}>
                             <span>Let's Connect</span>
