@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Col, Row, Alert } from "react-bootstrap";
+import jsonp from "jsonp";
 
 const MAILCHIMP_URL = "https://gmail.us22.list-manage.com/subscribe/post-json?u=e549044309c5c17ecf3d404a0&id=fb84ca3e92";
 
@@ -8,34 +9,28 @@ export const Newsletter = () => {
   const [status, setStatus] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setStatus("sending");
 
     if (email && email.indexOf("@") > -1) {
-      try {
-        const response = await fetch(`${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(email)}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        const data = await response.text();
-        const jsonData = JSON.parse(data.replace("jsonp(", "").slice(0, -1)); // Clean up response
-
-        if (jsonData.result === "success") {
-          setStatus("success");
-          setMessage("Thank you for subscribing!");
-          setEmail(""); // Clear the email input field
-        } else {
-          setStatus("error");
-          setMessage(jsonData.msg || "An unexpected error occurred.");
+      jsonp(
+        `${MAILCHIMP_URL}&EMAIL=${encodeURIComponent(email)}`,
+        { param: "c" },
+        (err, data) => {
+          if (err) {
+            setStatus("error");
+            setMessage("An error occurred while subscribing. Please try again.");
+          } else if (data.result !== "success") {
+            setStatus("error");
+            setMessage(data.msg || "An unexpected error occurred.");
+          } else {
+            setStatus("success");
+            setMessage("Thank you for subscribing!");
+            setEmail(""); // Clear the email input field
+          }
         }
-      } catch (error) {
-        setStatus("error");
-        setMessage("An error occurred while subscribing. Please try again.");
-      }
+      );
     } else {
       setStatus("error");
       setMessage("Please enter a valid email address.");
