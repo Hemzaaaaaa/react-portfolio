@@ -470,7 +470,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 /************ Projects Css ************/
 .contact {
-  background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+  background: linear-gradient(90.21deg, #aa367c -5.91%, #4A2FBD 111.58%);
   padding: 60px 0 200px 0;
 }
 .contact img {
@@ -539,6 +539,38 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .contact form button:hover::before {
   width: 100%;
 }
+
+.custom-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #aa367c;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease-in-out;
+  margin-right: 10px;
+}
+
+.custom-btn.github {
+  background-color: #aa367c;
+}
+
+.custom-btn.live {
+  background-color: #aa367c;
+}
+
+.custom-btn:hover {
+  background-color: #892c63;
+}
+
+.custom-btn svg {
+  font-size: 18px;
+}
+
+
 
 /************ Footer Css ************/
 .footer {
